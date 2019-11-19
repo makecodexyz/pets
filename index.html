@@ -1,0 +1,43 @@
+<html>
+<head>
+</head>
+<body>
+    <div id="app">
+        <div></div>
+        <pre>{{list}}</pre>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data(){
+                return {
+                    list : 'loading...'
+                }
+            },
+            created(){
+                axios.get('http://5c92dbfae7b1a00014078e61.mockapi.io/owners').then(resp => {
+                    console.log(resp);
+                    if(resp.status === 200){
+                        var list = {'Male':[], 'Female':[]};
+                        let persons = resp.data;
+                        persons.map((person,index) =>{
+                            let pets = person.pets || [];
+                            let cats = [];
+                            for(let i in pets){
+                                if(pets[i].type === 'Cat'){
+                                    cats.push(pets[i].name);
+                                }
+                            }
+                            list[person.gender].push(...cats);
+                            list[person.gender] = list[person.gender].sort();
+                        });
+                        this.list = list;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
