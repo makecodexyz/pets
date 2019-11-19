@@ -1,6 +1,6 @@
 ## pets 
 I use a cdn library insdead of vue-cli command to build it. 
 
-here is a screenshot
+here is a screenshots
 
-![screenshot](screenshot.jpg)
+![screenshots](screenshots.jpg)
