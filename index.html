@@ -31,8 +31,11 @@
                                 }
                             }
                             list[person.gender].push(...cats);
-                            list[person.gender] = list[person.gender].sort();
                         });
+                        for(let key in list){
+                            debugger;
+                            list[key] = list[key].sort();
+                        }
                         this.list = list;
                     }
                 });
