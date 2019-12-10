@@ -24,12 +24,7 @@
                         let persons = resp.data;
                         persons.map((person,index) =>{
                             let pets = person.pets || [];
-                            let cats = [];
-                            for(let i in pets){
-                                if(pets[i].type === 'Cat'){
-                                    cats.push(pets[i].name);
-                                }
-                            }
+                            let cats = pets.filter(pet =>{ return pet.type === 'Cat'});
                             list[person.gender].push(...cats);
                         });
                         for(let key in list){
